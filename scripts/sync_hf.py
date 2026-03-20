@@ -619,7 +619,8 @@ class OpenClawFullSync:
 
             # Fix paired devices scopes (OpenClaw 2026.2.19+ requires operator.write/read)
             # Delete old paired devices to force fresh auto-pair with correct scopes
-            devices_dir = Path(OPENCLAW_DIR) / "devices"
+            # devices_dir = Path(OPENCLAW_DIR) / "devices"
+            devices_dir = OPENCLAW_HOME / "devices"
             if devices_dir.exists():
                 import shutil
                 shutil.rmtree(devices_dir, ignore_errors=True)
