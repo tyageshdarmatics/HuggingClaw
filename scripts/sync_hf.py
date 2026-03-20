@@ -526,10 +526,17 @@ class OpenClawFullSync:
 
             # Plugin whitelist
             data.setdefault("plugins", {}).setdefault("entries", {})
-            plugin_allow = ["telegram", "whatsapp", "coding-agent", "acpx"]
+            plugin_allow = ["telegram", "whatsapp", "acpx"]
             if A2A_PEERS:
                 plugin_allow.append("a2a-gateway")
             data["plugins"]["allow"] = plugin_allow
+
+            # Override plugin locations to point ONLY to the empty bundled-plugins dir.
+            # This bypasses the 45 pre-built extensions in the Docker image, at least
+            # one of which has a corrupted UTF-16 manifest that crashes OpenClaw on load.
+            data["plugins"]["locations"] = [
+                "/app/openclaw/empty-bundled-plugins"
+            ]
 
             # ── acpx Plugin Configuration (ACP backend) ──
             data["plugins"]["entries"]["acpx"] = {
@@ -539,20 +546,6 @@ class OpenClawFullSync:
                 }
             }
 
-            # ── Coding Agent Plugin Configuration ──
-            CODING_TARGET_SPACE = os.environ.get("CODING_AGENT_TARGET_SPACE", "")
-            CODING_TARGET_DATASET = os.environ.get("CODING_AGENT_TARGET_DATASET", "")
-            if CODING_TARGET_SPACE:
-                data["plugins"]["entries"]["coding-agent"] = {
-                    "enabled": True,
-                    "config": {
-                        "targetSpace": CODING_TARGET_SPACE,
-                        "targetDataset": CODING_TARGET_DATASET,
-                        "hfToken": HF_TOKEN or "",
-                        "zaiApiKey": ZAI_API_KEY or ZHIPU_API_KEY or "",
-                    }
-                }
-                print(f"[SYNC] Coding agent configured: space={CODING_TARGET_SPACE}, dataset={CODING_TARGET_DATASET}, zaiKey={'set' if (ZAI_API_KEY or ZHIPU_API_KEY) else 'missing'}")
             if "telegram" not in data["plugins"]["entries"]:
                 data["plugins"]["entries"]["telegram"] = {"enabled": True}
             elif isinstance(data["plugins"]["entries"]["telegram"], dict):
