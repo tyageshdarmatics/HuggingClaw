@@ -489,8 +489,8 @@ class OpenClawFullSync:
                     "apiKey": OPENROUTER_API_KEY,
                     "api": "openai-completions",
                     "models": [
-                        {"id": "openai/gpt-oss-20b:free", "name": "GPT-OSS-20B (Free)"},
-                        {"id": "deepseek/deepseek-chat:free", "name": "DeepSeek V3 (Free)"}
+                        {"id": "openai/gpt-4o", "name": "GPT-4o"},
+                        {"id": "deepseek/deepseek-chat", "name": "DeepSeek V3"}
                     ]
                 }
                 print("[SYNC] Set OpenRouter provider")
