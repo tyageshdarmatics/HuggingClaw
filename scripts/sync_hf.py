@@ -474,9 +474,13 @@ class OpenClawFullSync:
             providers = {}
             if OPENAI_API_KEY:
                 providers["openai"] = {
-                    "baseUrl": OPENAI_BASE_URL,
+                    "baseUrl": OPEN_AI_BASE_URL if 'OPEN_AI_BASE_URL' in locals() else (OPENAI_BASE_URL if 'OPENAI_BASE_URL' in locals() else "https://api.openai.com/v1"),
                     "apiKey": OPENAI_API_KEY,
                     "api": "openai-completions",
+                    "models": [
+                        {"id": "gpt-4o", "name": "GPT-4o"},
+                        {"id": "gpt-4o-mini", "name": "GPT-4o Mini"}
+                    ]
                 }
                 print(f"[SYNC] Set OpenAI-compatible provider (baseUrl={OPENAI_BASE_URL})")
             if OPENROUTER_API_KEY:
@@ -619,7 +623,6 @@ class OpenClawFullSync:
 
             # Fix paired devices scopes (OpenClaw 2026.2.19+ requires operator.write/read)
             # Delete old paired devices to force fresh auto-pair with correct scopes
-            # devices_dir = Path(OPENCLAW_DIR) / "devices"
             devices_dir = OPENCLAW_HOME / "devices"
             if devices_dir.exists():
                 import shutil
