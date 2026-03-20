@@ -1,0 +1,74 @@
+{
+  "gateway": {
+    "mode": "local",
+    "bind": "lan",
+    "port": 7860,
+    "auth": { "token": "huggingclaw" },
+    "trustedProxies": [
+      "0.0.0.0/0"
+    ],
+    "controlUi": {
+      "allowInsecureAuth": true,
+      "dangerouslyDisableDeviceAuth": true,
+      "allowedOrigins": [
+        "https://huggingface.co",
+        "https://*.hf.space"
+      ]
+    }
+  },
+  "session": { "scope": "global" },
+  "models": {
+    "mode": "merge",
+    "providers": {
+      "openrouter": {
+        "baseUrl": "https://openrouter.ai/api/v1",
+        "apiKey": "__OPENROUTER_API_KEY__",
+        "api": "openai-completions",
+        "models": [
+          {
+            "id": "openai/gpt-oss-20b:free",
+            "name": "GPT-OSS-20B (Free)"
+          },
+          {
+            "id": "deepseek/deepseek-chat:free",
+            "name": "DeepSeek V3 (Free)"
+          }
+        ]
+      }
+    }
+  },
+  "acp": {
+    "enabled": true,
+    "backend": "acpx",
+    "defaultAgent": "claude",
+    "allowedAgents": ["claude"],
+    "maxConcurrentSessions": 4,
+    "dispatch": { "enabled": true },
+    "runtime": { "ttlMinutes": 120 }
+  },
+  "plugins": {
+    "allow": ["telegram", "whatsapp", "acpx"],
+    "entries": {
+      "telegram": {
+        "enabled": true
+      },
+      "whatsapp": {
+        "enabled": true
+      },
+      "acpx": {
+        "enabled": true,
+        "config": {
+          "permissionMode": "approve-all"
+        }
+      }
+    }
+  },
+  "agents": {
+    "defaults": {
+      "workspace": "~/.openclaw/workspace",
+      "model": {
+        "primary": "openrouter/openai/gpt-oss-20b:free"
+      }
+    }
+  }
+}

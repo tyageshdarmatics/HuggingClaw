@@ -1,0 +1,24 @@
+# environment and keys
+.env
+.env.local
+*.pem
+credentials/
+
+# Dependencies and builds
+node_modules/
+dist/
+build/
+
+# Video generation temporary storage
+**/generated_images/
+**/generated_videos/
+**/scenes.json
+
+# Logs and temporary
+*.log
+.DS_Store
+frontend/index.html
+scripts/__pycache__/
+__pycache__/
+*.tmp
+*.bak

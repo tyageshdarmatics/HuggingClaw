@@ -1,0 +1,28 @@
+diff --git a/src/web/inbound/monitor.ts b/src/web/inbound/monitor.ts
+index 6dc2ce5..982e5a5 100644
+--- a/src/web/inbound/monitor.ts
++++ b/src/web/inbound/monitor.ts
+@@ -399,11 +399,6 @@ export async function monitorWebInbox(options: {
+       return;
+     }
+     for (const msg of upsert.messages ?? []) {
+-      recordChannelActivity({
+-        channel: "whatsapp",
+-        accountId: options.accountId,
+-        direction: "inbound",
+-      });
+       const inbound = await normalizeInboundMessage(msg);
+       if (!inbound) {
+         continue;
+@@ -421,6 +416,11 @@ export async function monitorWebInbox(options: {
+         continue;
+       }
+ 
++      recordChannelActivity({
++        channel: "whatsapp",
++        accountId: options.accountId,
++        direction: "inbound",
++      });
+       await enqueueInboundMessage(msg, inbound, enriched);
+     }
+   };
