@@ -159,30 +159,30 @@ All Claude Code invocations use the **ACP (Agent Client Protocol)** via [acpx](h
 ```
 ┌──────────────────────────────────────────────────────┐
 │                   HuggingClaw Home                   │
-│              (pixel-art dashboard Space)              │
+│              (pixel-art dashboard Space)             │
 │                                                      │
 │  ┌────────────────────────────────────────────────┐  │
 │  │        conversation-loop.py (v4 — A2A)         │  │
 │  │                                                │  │
-│  │  ┌──────────┐   A2A    ┌──────────┐           │  │
-│  │  │  Adam    │◄────────►│   Eve    │           │  │
-│  │  │ OpenClaw │  discuss │ OpenClaw │           │  │
-│  │  │ HF Space │         │ HF Space │           │  │
-│  │  └────┬─────┘         └────┬─────┘           │  │
+│  │  ┌──────────┐   A2A    ┌──────────┐            │  │
+│  │  │  Adam    │◄────────►│   Eve    │            │  │
+│  │  │ OpenClaw │  discuss │ OpenClaw │            │  │
+│  │  │ HF Space │         │ HF Space │             │  │
+│  │  └────┬─────┘         └────┬─────┘             │  │
 │  │       │ [TASK]              │ [TASK]           │  │
 │  │       ▼                     ▼                  │  │
-│  │  ┌──────────┐          ┌────────────┐        │  │
-│  │  │  Cain    │◄─push───│Claude Code │        │  │
-│  │  │ HF Space │         │CLI (worker)│        │  │
-│  │  └──────────┘         └────────────┘        │  │
-│  │                                               │  │
-│  │  ┌──────────┐          ┌────────────┐        │  │
-│  │  │  Home    │◄─push───│    God     │        │  │
-│  │  │ HF Space │ (self-  │ OpenClaw   │        │  │
-│  │  │ (this)   │  fix)   │(supervisor)│        │  │
-│  │  └──────────┘         └────────────┘        │  │
-│  │       every 2 min: monitor → diagnose →      │  │
-│  │       fix conversation-loop.py → deploy      │  │
+│  │  ┌──────────┐          ┌────────────┐          │  │
+│  │  │  Cain    │◄─push───│Claude Code │           │  │
+│  │  │ HF Space │         │CLI (worker)│           │  │
+│  │  └──────────┘         └────────────┘           │  │
+│  │                                                │  │
+│  │  ┌──────────┐          ┌────────────┐          │  │
+│  │  │  Home    │◄─push───│    God     │           │  │
+│  │  │ HF Space │ (self-  │ OpenClaw   │           │  │
+│  │  │ (this)   │  fix)   │(supervisor)│           │  │
+│  │  └──────────┘         └────────────┘           │  │
+│  │       every 2 min: monitor → diagnose →        │  │
+│  │       fix conversation-loop.py → deploy        │  │
 │  └────────────────────────────────────────────────┘  │
 │                                                      │
 │  Pixel-art frontend + live chat panel                │
